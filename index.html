@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -12,23 +13,28 @@
 <body>
     <div class="p-3 bg-container">
         <h1 class="heading mb-4">Binance Smart chain explorer</h1>
+        <p>All wallet addresses having 2BNB balance and performed atleast one transaction in the last month(1st JAN 2023-1st FEB 2023)</p>
+        <p><span class="n">Note*: </span>This project uses Free BSC Mainnet API, So it can fetch only 10000 records. This API can make 5 calls per second.</p>
+
+        <br>
         <div>
-            <button class="mt-3 p-2 button" id="sendGetRequestBtn">Connect</button>
+            <button class="mt-3 p-2 button request-status" id="sendGetRequestBtn">Connect</button>
             <button class="btn-stat" id="stat"></button>
         </div>
-        <div id="ftd"></div>
-        <div id="container"></div>
+        <br>
+        <div class="http-response" id="ftd"></div>
+        <div id="db"></div>
+        <br><br>
         <div class="p-2">
             <p>Connection Status</p>
             <p id="requestStatus" class="request-status"></p>
-            <p class="d-none" id="loading">Connecting...</p>
+            <p class="d-none request-status" id="loading">Please wait Connecting...</p>
         </div>
         <hr />
         <div class="p-2 mt-4">
             <p>Response Body</p>
             <p id="httpResponse" class="http-response"></p>
         </div>
-        <div id="db"></div>
     </div>
 </body>
 
