@@ -50,7 +50,7 @@ let loadingel = document.getElementById("loading");
 let ele = document.getElementById("ftd");
 btn.addEventListener("click", function() {
     loadingel.classList.remove("d-none");
-    const url = "https://api.bscscan.com/api?module=account&action=txlistinternal&startblock=25944043&endblock=26836255&page=1&offset=500&sort=asc&apikey=I6XJPSDTKIDNCK24XUURI65MHRFZ431U5J"
+    const url = "https://api.bscscan.com/api?module=account&action=txlistinternal&startblock=25944043&endblock=26836255&page=1&offset=10000&sort=asc&apikey=I6XJPSDTKIDNCK24XUURI65MHRFZ431U5J"
     fetch(url, options)
         .then(function(response) {
             return response.status;
