@@ -64,6 +64,25 @@
     border-radius: 4px;
 }
 
+.d-button {
+    color: black;
+    background-color: #ffd700;
+    font-size: 14px;
+    padding: 7px;
+    border-width: 0;
+    border-radius: 4px;
+}
+
+.f-button {
+    color: #ffffff;
+    background-color: #0967d2;
+    font-size: 14px;
+    padding: 7px;
+    border-width: 0;
+    border-radius: 4px;
+    margin-top: 9px;
+}
+
 .request-status {
     color: #ffffff;
     font-family: "Roboto";
