@@ -1,5 +1,5 @@
 # BSCchainexplorer
-This JavaScript project is an application that can be used to fetch data from the BSCScan mainnet API. The application retrieves a list of transactions from a given startblock and endblock and then filters out the addresses with a balance higher than 2BNB. 
+This is a web application that can be used to fetch data from the BSCScan mainnet using it's free developer API. The application retrieves a list of transactions from a given startblock and endblock and then filters out the addresses with a balance higher than 2BNB. 
 
 Once the data has been retrieved, it can be downloaded into a .csv file. 
 
