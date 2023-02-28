@@ -3,6 +3,9 @@ let options = {
 };
 let y = 0;
 let d_status = 0;
+//console.log(d_status);
+var ct = 5;
+let filter;
 var arr = [];
 var bal_arr = new Array();
 
@@ -23,34 +26,32 @@ function downloadCsv(filename, csvData) {
     const element = document.createElement("a");
 
     element.setAttribute("href", `data:text/csv;charset=utf-8,${csvData}`);
-    element.setAttribute("download", filename);
+    element.setAttribute("SCAN_RESULT", filename);
     element.style.display = "none";
 
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
 }
-let btn = document.getElementById("sendGetRequestBtn");
-let filter = document.getElementById("fbtn");
-let loadingel = document.getElementById("loading");
-const btnDownloadCsv = document.getElementById("csv2");
-btnDownloadCsv.addEventListener("click", () => {
-    downloadCsv("dcode-test.csv", json2csv.parse(bal_arr));
-});
 
+
+
+
+let btn = document.getElementById("sendGetRequestBtn");
+let loadingel = document.getElementById("loading");
 
 
 let ele = document.getElementById("container");
 btn.addEventListener("click", function() {
     loadingel.classList.remove("d-none");
-    const url = "https://api.bscscan.com/api?module=account&action=txlistinternal&startblock=25944043&endblock=26836255&page=1&offset=1000&sort=asc&apikey=I6XJPSDTKIDNCK24XUURI65MHRFZ431U5J"
+    const url = "https://api.bscscan.com/api?module=account&action=txlistinternal&startblock=25944043&endblock=26836255&page=1&offset=90&sort=asc&apikey=I6XJPSDTKIDNCK24XUURI65MHRFZ431U5J"
     fetch(url, options)
         .then(function(response) {
             return response.status;
         })
         .then(function(status) {
-            document.getElementById("requestStatus").textContent = status;
-            console.log(status);
+            document.getElementById("requestStatus").textContent = "Success!";
+            //console.log(status);
             if (status == 200) {
                 btn.textContent = "Connected";
                 document.getElementById("stat").classList.add("btn-stat-suc");
@@ -70,16 +71,21 @@ btn.addEventListener("click", function() {
                 const firstTransaction = parsedResponse.result[i];
                 arr.push(firstTransaction.from);
             }
-            document.getElementById("httpResponse").textContent = "Connected";
+            document.getElementById("httpResponse").textContent = "Click on Fetch data button to fetch data!";
             y = 1;
             if (y == 1) {
-                console.log(789);
+
                 arr = show(arr);
             }
             loadingel.classList.add("d-none");
         });
 });
 
+
+filter = document.createElement("button");
+filter.classList.add("f-button");
+filter.textContent = "Fetch data";
+document.getElementById("ftd").appendChild(filter);
 filter.addEventListener("click", function() {
     document.getElementById("httpResponse").textContent = " ";
     let uniqueId = null;
@@ -115,12 +121,27 @@ filter.addEventListener("click", function() {
         p = p + 1;
         if (100 * p / cent == 100) {
             ele.textContent = "Downloaded!"
+        } else if (100 * p / cent == "Infinity") {
+            ele.textContent = "Connect to Mainnet first! Reload page! first connect then fetch";
         } else {
             ele.textContent = "Downloading... " + 100 * p / cent + " %";
         }
-        console.log(bal_arr[k]);
+        //console.log(bal_arr[k]);
         if (p == arr.length) {
             clearInterval(uniqueId);
+            d_status = 1;
+            //console.log(d_status);
+            if (d_status == 1) {
+                let dbtn = document.createElement("button");
+                dbtn.classList.add("d-button");
+                dbtn.id = "csv2";
+                dbtn.textContent = "Download"
+                document.getElementById("db").appendChild(dbtn);
+                const btnDownloadCsv = document.getElementById("csv2");
+                btnDownloadCsv.addEventListener("click", () => {
+                    downloadCsv("dcode-test.csv", json2csv.parse(bal_arr));
+                });
+            }
             return;
         }
     }, 390);
